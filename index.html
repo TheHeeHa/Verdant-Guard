@@ -23,11 +23,11 @@
           <button class="map-card" data-map="thornmaze" role="radio" aria-checked="false"><span class="map-art thorn-art"><i></i></span><b>Thornmaze</b><small>HARD · Bramble traps + obstacles</small></button>
         </div>
         <div class="adventure-options">
-          <section><span>GAME MODE</span><div class="mode-picker" role="radiogroup" aria-label="Choose game mode"><button class="selected" data-mode="campaign" role="radio" aria-checked="true">Campaign</button><button data-mode="endless" role="radio" aria-checked="false">Endless</button><button data-mode="daily" role="radio" aria-checked="false">Daily challenge</button><button data-mode="sandbox" role="radio" aria-checked="false">Sandbox</button></div></section>
+          <section><span>GAME MODE</span><div class="mode-picker" role="radiogroup" aria-label="Choose game mode"><button class="selected" data-mode="campaign" role="radio" aria-checked="true">Classic</button><button data-mode="endless" role="radio" aria-checked="false">Endless</button><button data-mode="daily" role="radio" aria-checked="false">Daily challenge</button><button data-mode="sandbox" role="radio" aria-checked="false">Sandbox</button></div></section>
           <section><span>CHALLENGE MODIFIERS</span><div class="modifier-grid"><label><input type="checkbox" data-modifier="swift" /> Swift swarm</label><label><input type="checkbox" data-modifier="armored" /> Armored ranks</label><label><input type="checkbox" data-modifier="scarcity" /> Scarce credits</label><label><input type="checkbox" data-modifier="single" /> One tower type</label></div></section>
           <section><span>TOWER STYLE</span><select id="cosmeticSelect"><option value="classic">Classic grove</option><option value="moonlit">Moonlit (Level 2)</option><option value="golden">Golden (Level 4)</option><option value="ember">Ember (Level 7)</option></select><label class="sandbox-wave">Sandbox starting wave<input id="sandboxWaveStart" type="number" min="1" max="99" value="1" /></label></section>
         </div>
-        <div class="meta-actions"><button id="achievementsButton" class="secondary">Achievements</button><button id="encyclopediaButton" class="secondary">Enemy encyclopedia</button></div>
+        <div class="meta-actions"><button id="tutorialButton" class="secondary tutorial-launch">Tutorials &amp; Map Explorer</button><button id="achievementsButton" class="secondary">Achievements</button><button id="encyclopediaButton" class="secondary">Enemy encyclopedia</button></div>
         <button id="beginButton" class="primary begin-button">Begin defense</button>
       </div>
     </section>
@@ -110,6 +110,13 @@
     </section>
     <section id="journalModal" class="secret-modal hidden">
       <div class="secret-card journal-card"><div class="cheat-head"><div><p class="eyebrow">GUARDIAN JOURNAL</p><h2 id="journalTitle">Achievements</h2></div><button id="closeJournal" aria-label="Close journal">×</button></div><div id="journalContent" class="journal-content"></div></div>
+    </section>
+    <section id="tutorialModal" class="tutorial-modal hidden">
+      <div class="tutorial-card">
+        <div class="tutorial-head"><div><p class="eyebrow">VERDANT ACADEMY</p><h2 id="tutorialTitle">Interactive Tutorial Center</h2><p id="tutorialSubtitle">Choose what you want to practice.</p></div><button id="closeTutorial" aria-label="Close tutorials">×</button></div>
+        <div id="tutorialHub" class="tutorial-hub"></div>
+        <div id="tutorialLesson" class="tutorial-lesson hidden"><button id="tutorialBack" class="tutorial-back">← All tutorials</button><div id="tutorialStage"></div><div class="tutorial-nav"><button id="tutorialPrevious" class="secondary">Previous</button><span id="tutorialProgress">1 / 1</span><button id="tutorialNext" class="primary">Next</button></div></div>
+      </div>
     </section>
     <section id="specializationModal" class="secret-modal hidden">
       <div class="secret-card specialization-card"><p class="eyebrow">LEVEL 3 EVOLUTION</p><h2>Choose a permanent path</h2><p id="specializationPrompt"></p><div id="specializationChoices" class="specialization-choices"></div><button id="cancelSpecialization" class="secondary">Not yet</button></div>
