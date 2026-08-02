@@ -33,13 +33,3 @@ Choose a guardian name and one of three maps before playing. Medium and Hard map
 Choose 1, 3, 5, or 10 starting lives before a game. Every life has 100 health; leaked enemies deal different amounts of damage based on their strength. Losing all health consumes a life and restores health when another life remains. The results screen includes current-round and lifetime statistics.
 
 Enemy names in the next-wave preview are clickable and reveal descriptions. Clicking a live enemy on the battlefield opens a moving information popup above it with its health, speed, leak damage, and special behavior.
-
-The game also contains a hidden cheat panel. During a round, clicking the word “Guard” beside the player name 21 times opens a password prompt. The panel can customize the next wave, resources, total waves, score, health, lives, buffs, traps, invincibility, and quick round actions.
-
-After a successful unlock, a Cheats shortcut remains beside “Guard” for the rest of that round. The controls open as a side drawer. Buffs and traps can be positioned with manual X/Y coordinates or by choosing “Pick a position on the map” and clicking the battlefield.
-
-The Free tower placement cheat permits building and moving towers anywhere inside the battlefield, including directly on the enemy path, on obstacles, at the edges, or overlapping other towers.
-
-The right-click upgrade cheat jumps a tower directly to the chosen target level in one click and charges the combined credit cost of every required upgrade. With unlimited levels enabled, the target accepts any number up to 1,000,000 or the word `max` as a shortcut for Level 1,000,000.
-
-Very high tower levels keep their full gameplay range and power, but their visual range indicator is capped so it cannot cover the screen. On-field level badges abbreviate large values such as `10K`, `100K`, and `MAX`.
