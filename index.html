@@ -11,7 +11,8 @@
     <section id="startScreen" class="start-screen">
       <div class="start-card">
         <p class="eyebrow">A TOWER DEFENSE ADVENTURE</p>
-        <h2>Name your guard</h2>
+        <h2>Name your <span id="startGuardSecret" class="start-guard-secret">guard</span></h2>
+        <p id="startSecretCount" class="start-secret-count hidden"></p>
         <p class="start-copy">Choose your name and the land you will defend.</p>
         <p id="progressText" class="progress-text">No victories recorded yet.</p>
         <label class="name-field"><span>GUARDIAN NAME</span><input id="playerName" maxlength="18" placeholder="Enter your name" autocomplete="off" /></label>
@@ -118,6 +119,9 @@
         <div id="tutorialHub" class="tutorial-hub"></div>
         <div id="tutorialLesson" class="tutorial-lesson hidden"><button id="tutorialBack" class="tutorial-back">← All tutorials</button><div id="tutorialStage"></div><div class="tutorial-nav"><button id="tutorialPrevious" class="secondary">Previous</button><span id="tutorialProgress">1 / 1</span><button id="tutorialNext" class="primary">Next</button></div></div>
       </div>
+    </section>
+    <section id="progressCheatPanel" class="secret-modal progress-cheat-panel hidden">
+      <div class="secret-card progress-cheat-card"><div class="cheat-head"><div><p class="eyebrow">SECRET PROGRESS CONTROLS</p><h2>Guardian unlocks</h2><p>Changes are saved immediately.</p></div><button id="closeProgressCheats" aria-label="Close progress controls">×</button></div><div id="progressCheatContent" class="progress-cheat-content"></div></div>
     </section>
     <section id="specializationModal" class="secret-modal hidden">
       <div class="secret-card specialization-card"><p class="eyebrow">LEVEL 3 EVOLUTION</p><h2>Choose a permanent path</h2><p id="specializationPrompt"></p><div id="specializationChoices" class="specialization-choices"></div><button id="cancelSpecialization" class="secondary">Not yet</button></div>
