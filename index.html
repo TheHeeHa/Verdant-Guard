@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1718" />
+    <title>Verdant Guard — Tower Defense</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section id="startScreen" class="start-screen">
+      <div class="start-card">
+        <p class="eyebrow">A TOWER DEFENSE ADVENTURE</p>
+        <h2>Name your guard</h2>
+        <p class="start-copy">Choose your name and the land you will defend.</p>
+        <p id="progressText" class="progress-text">No victories recorded yet.</p>
+        <label class="name-field"><span>GUARDIAN NAME</span><input id="playerName" maxlength="18" placeholder="Enter your name" autocomplete="off" /></label>
+        <div class="life-picker"><span>STARTING LIVES</span><div role="radiogroup" aria-label="Choose starting lives"><button data-lives="1" role="radio" aria-checked="false">1</button><button class="selected" data-lives="3" role="radio" aria-checked="true">3</button><button data-lives="5" role="radio" aria-checked="false">5</button><button data-lives="10" role="radio" aria-checked="false">10</button></div><small>Each life begins with 100 health</small></div>
+        <div class="map-heading"><span>CHOOSE A MAP</span><small>Harder maps have more obstacles and tougher enemies</small></div>
+        <div class="map-grid" role="radiogroup" aria-label="Choose a map">
+          <button class="map-card selected" data-map="meadow" role="radio" aria-checked="true"><span class="map-art meadow-art"><i></i></span><b>Sunlit Meadow</b><small>EASY · Range-boosting sun patches</small></button>
+          <button class="map-card" data-map="ruins" role="radio" aria-checked="false"><span class="map-art ruins-art"><i></i></span><b>Mossy Ruins</b><small>MEDIUM · Power runes + obstacles</small></button>
+          <button class="map-card" data-map="thornmaze" role="radio" aria-checked="false"><span class="map-art thorn-art"><i></i></span><b>Thornmaze</b><small>HARD · Bramble traps + obstacles</small></button>
+        </div>
+        <button id="beginButton" class="primary begin-button">Begin defense</button>
+      </div>
+    </section>
+    <main class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <div><h1 id="guardName">Verdant Guard</h1><p id="mapName">Protect the heartwood</p></div>
+        </div>
+        <div class="stats" aria-label="Game status">
+          <div><span>Credits</span><strong id="money">120</strong></div>
+          <div class="health-stat"><span>Health</span><strong id="health">100</strong><i><em id="healthBar"></em></i></div>
+          <div><span>Lives</span><strong id="lives">3</strong></div>
+          <div><span>Score</span><strong id="score">0</strong></div>
+          <div><span>Wave</span><strong id="wave">0 / 8</strong></div>
+        </div>
+        <div class="game-controls" aria-label="Game controls">
+          <button id="menuButton" title="Return to main menu">←</button>
+          <button id="pauseButton" title="Pause game">Ⅱ</button>
+          <button id="speedButton" title="Change game speed">1×</button>
+          <button id="soundButton" title="Toggle sound">♪</button>
+        </div>
+      </header>
+
+      <section class="game-card">
+        <div class="canvas-wrap">
+          <canvas id="game" width="960" height="560" aria-label="Tower defense battlefield"></canvas>
+          <div id="announcement" class="announcement hidden" role="status"></div>
+          <div id="overlay" class="overlay hidden">
+            <div id="resultSummary" class="result-summary">
+              <div class="result-icon" id="resultIcon">×</div>
+              <p class="eyebrow" id="resultLabel">THE GROVE FELL</p>
+              <h2 id="resultTitle">Game over</h2>
+              <p id="resultText">The swarm reached the heartwood.</p>
+              <div class="result-actions"><button id="viewStatsButton" class="secondary">View stats</button><button id="restartOverlay" class="primary">Main menu</button></div>
+            </div>
+            <div id="statsView" class="stats-view hidden">
+              <p class="eyebrow">DEFENSE RECORDS</p><h2>Your stats</h2>
+              <div class="stat-columns"><section><h3>This round</h3><div id="roundStats"></div></section><section><h3>All time</h3><div id="lifetimeStats"></div></section></div>
+              <div class="result-actions"><button id="backStatsButton" class="secondary">Back</button><button id="restartStatsButton" class="primary">Main menu</button></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="panel">
+          <div class="panel-head"><p class="eyebrow">BUILD DECK</p><h2>Choose a tower</h2></div>
+          <button class="tower-card selected" data-tower="sprout" aria-pressed="true">
+            <span class="tower-glyph sprout">●</span><span><b>Sprout</b><small>Fast, reliable shots</small></span><strong>40</strong>
+          </button>
+          <button class="tower-card" data-tower="bloom" aria-pressed="false">
+            <span class="tower-glyph bloom">✦</span><span><b>Bloom</b><small>Long range, heavy hit</small></span><strong>70</strong>
+          </button>
+          <button class="tower-card" data-tower="frost" aria-pressed="false">
+            <span class="tower-glyph frost">◆</span><span><b>Frost</b><small>Slows enemies</small></span><strong>60</strong>
+          </button>
+          <button class="tower-card" data-tower="cannon" aria-pressed="false"><span class="tower-glyph cannon">●</span><span><b>Acorn Cannon</b><small>Splash damage</small></span><strong>90</strong></button>
+          <button class="tower-card" data-tower="poison" aria-pressed="false"><span class="tower-glyph poison">♠</span><span><b>Nightshade</b><small>Damage over time</small></span><strong>75</strong></button>
+          <button class="tower-card" data-tower="support" aria-pressed="false"><span class="tower-glyph support">✚</span><span><b>Sun Totem</b><small>Boosts nearby towers</small></span><strong>85</strong></button>
+          <button class="tower-card" data-tower="lightning" aria-pressed="false"><span class="tower-glyph lightning">ϟ</span><span><b>Stormspire</b><small>Chains between enemies</small></span><strong>110</strong></button>
+
+          <div id="wavePreview" class="wave-preview"><span>NEXT WAVE · CLICK AN ENEMY FOR DETAILS</span><div id="previewEnemies">Crawler × 7</div><div id="previewDescription" class="preview-description hidden"></div></div>
+
+          <div class="selected-info" id="selectedInfo"><span>Sprout selected</span><small>Click open grass to place</small></div>
+          <div class="tower-actions hidden" id="towerActions">
+            <button id="moveTowerButton" class="action-button move">Move tower</button>
+            <button id="sellTowerButton" class="action-button sell">Sell · 24</button>
+            <button id="upgradeTowerButton" class="action-button upgrade">Upgrade · 30</button>
+            <button id="targetButton" class="action-button target">Target: First</button>
+          </div>
+          <div id="enemyInfo" class="enemy-info hidden"></div>
+          <button id="waveButton" class="primary">Start wave 1</button>
+          <button id="restartButton" class="secondary">Restart game</button>
+          <div class="tip"><b>Field note</b><p>Between waves, deselect your build card and click a placed tower to move or sell it.</p></div>
+        </aside>
+      </section>
+      <footer><span><i class="dot entrance"></i> Swarm entrance</span><span><i class="dot heart"></i> Heartwood</span><span class="hint">Click a tower, then click the field</span></footer>
+    </main>
+    <section id="passwordModal" class="secret-modal hidden">
+      <div class="secret-card password-card"><p class="eyebrow">RESTRICTED ACCESS</p><h2>Enter the password</h2><p>Enter the cheat-panel password to continue.</p><input id="cheatPassword" type="password" autocomplete="off" placeholder="Password" /><p id="passwordError" class="password-error hidden">Incorrect password.</p><div class="secret-actions"><button id="cancelPassword" class="secondary">Cancel</button><button id="submitPassword" class="primary">Unlock</button></div></div>
+    </section>
+    <section id="cheatPanel" class="secret-modal hidden">
+      <div class="secret-card cheat-card"><div class="cheat-head"><div><p class="eyebrow">SECRET DEVELOPER PANEL</p><h2>Reality controls</h2></div><button id="closeCheats" aria-label="Close cheat panel">×</button></div>
+        <div class="cheat-grid">
+          <section><h3>Round values</h3><div class="cheat-fields"><label>Credits<input id="cheatCredits" type="number" min="0" /></label><label>Health<input id="cheatHealth" type="number" min="0" max="100" /></label><label>Lives<input id="cheatLives" type="number" min="1" max="99" /></label><label>Total waves<input id="cheatWaves" type="number" min="1" max="50" /></label><label>Score<input id="cheatScore" type="number" min="0" /></label></div><button id="applyValues" class="primary">Apply values</button><label class="cheat-check"><input id="invincibleToggle" type="checkbox" /> Invincible heartwood</label><label class="cheat-check"><input id="freePlacementToggle" type="checkbox" /> Free tower placement anywhere</label><label class="cheat-check"><input id="rightClickUpgradeToggle" type="checkbox" /> Right-click tower upgrades</label><label class="cheat-mode">Upgrade directly to level<input id="rightClickLevel" type="text" inputmode="numeric" value="2" placeholder="2, 10000, or max" /></label><small class="cheat-hint">Type <b>max</b> for Level 1,000,000, or enter any level you want.</small><label class="cheat-check"><input id="infiniteUpgradesToggle" type="checkbox" /> Allow target levels above Level 3</label></section>
+          <section><h3>Next-wave enemies</h3><div id="cheatEnemyFields" class="enemy-cheat-grid"></div><button id="applyRoster" class="primary">Set next wave</button></section>
+          <section><h3>Buffs and traps</h3><div class="cheat-fields"><label>Type<select id="cheatFeatureType"><option value="range">Range buff</option><option value="damage">Damage buff</option><option value="trap">Slow trap</option></select></label><label>X position<input id="cheatFeatureX" type="number" min="0" max="960" value="480" /></label><label>Y position<input id="cheatFeatureY" type="number" min="0" max="560" value="280" /></label><label>Radius<input id="cheatFeatureRadius" type="number" min="10" max="150" value="60" /></label></div><button id="pickFeature" class="map-pick-button">◎ Pick a position on the map</button><div class="secret-actions"><button id="addFeature" class="primary">Add feature</button><button id="clearFeatures" class="secondary">Reset terrain</button></div></section>
+          <section><h3>Quick actions</h3><div class="quick-actions"><button id="clearEnemies" class="secondary">Clear enemies</button><button id="finishWave" class="secondary">Finish wave</button><button id="addCredits" class="secondary">+500 credits</button><button id="healHeart" class="secondary">Restore health</button></div><p class="cheat-note">Custom settings affect only the current round.</p></section>
+        </div>
+      </div>
+    </section>
+    <script src="game.js"></script>
+  </body>
+</html>
