@@ -22,6 +22,12 @@
           <button class="map-card" data-map="ruins" role="radio" aria-checked="false"><span class="map-art ruins-art"><i></i></span><b>Mossy Ruins</b><small>MEDIUM · Power runes + obstacles</small></button>
           <button class="map-card" data-map="thornmaze" role="radio" aria-checked="false"><span class="map-art thorn-art"><i></i></span><b>Thornmaze</b><small>HARD · Bramble traps + obstacles</small></button>
         </div>
+        <div class="adventure-options">
+          <section><span>GAME MODE</span><div class="mode-picker" role="radiogroup" aria-label="Choose game mode"><button class="selected" data-mode="campaign" role="radio" aria-checked="true">Campaign</button><button data-mode="endless" role="radio" aria-checked="false">Endless</button><button data-mode="daily" role="radio" aria-checked="false">Daily challenge</button><button data-mode="sandbox" role="radio" aria-checked="false">Sandbox</button></div></section>
+          <section><span>CHALLENGE MODIFIERS</span><div class="modifier-grid"><label><input type="checkbox" data-modifier="swift" /> Swift swarm</label><label><input type="checkbox" data-modifier="armored" /> Armored ranks</label><label><input type="checkbox" data-modifier="scarcity" /> Scarce credits</label><label><input type="checkbox" data-modifier="single" /> One tower type</label></div></section>
+          <section><span>TOWER STYLE</span><select id="cosmeticSelect"><option value="classic">Classic grove</option><option value="moonlit">Moonlit (Level 2)</option><option value="golden">Golden (Level 4)</option><option value="ember">Ember (Level 7)</option></select><label class="sandbox-wave">Sandbox starting wave<input id="sandboxWaveStart" type="number" min="1" max="99" value="1" /></label></section>
+        </div>
+        <div class="meta-actions"><button id="achievementsButton" class="secondary">Achievements</button><button id="encyclopediaButton" class="secondary">Enemy encyclopedia</button></div>
         <button id="beginButton" class="primary begin-button">Begin defense</button>
       </div>
     </section>
@@ -55,7 +61,7 @@
               <p class="eyebrow" id="resultLabel">THE GROVE FELL</p>
               <h2 id="resultTitle">Game over</h2>
               <p id="resultText">The swarm reached the heartwood.</p>
-              <div class="result-actions"><button id="viewStatsButton" class="secondary">View stats</button><button id="restartOverlay" class="primary">Main menu</button></div>
+              <div class="result-actions"><button id="viewStatsButton" class="secondary">View stats</button><button id="continueEndlessButton" class="secondary endless-continue">Continue in Endless</button><button id="restartOverlay" class="primary">Main menu</button></div>
             </div>
             <div id="statsView" class="stats-view hidden">
               <p class="eyebrow">DEFENSE RECORDS</p><h2>Your stats</h2>
@@ -88,6 +94,7 @@
             <button id="moveTowerButton" class="action-button move">Move tower</button>
             <button id="sellTowerButton" class="action-button sell">Sell · 24</button>
             <button id="upgradeTowerButton" class="action-button upgrade">Upgrade · 30</button>
+            <button id="specializeTowerButton" class="action-button specialize hidden">Choose specialization</button>
             <button id="targetButton" class="action-button target">Target: First</button>
           </div>
           <div id="enemyInfo" class="enemy-info hidden"></div>
@@ -100,6 +107,12 @@
     </main>
     <section id="passwordModal" class="secret-modal hidden">
       <div class="secret-card password-card"><p class="eyebrow">RESTRICTED ACCESS</p><h2>Enter the password</h2><p>Enter the cheat-panel password to continue.</p><input id="cheatPassword" type="password" autocomplete="off" placeholder="Password" /><p id="passwordError" class="password-error hidden">Incorrect password.</p><div class="secret-actions"><button id="cancelPassword" class="secondary">Cancel</button><button id="submitPassword" class="primary">Unlock</button></div></div>
+    </section>
+    <section id="journalModal" class="secret-modal hidden">
+      <div class="secret-card journal-card"><div class="cheat-head"><div><p class="eyebrow">GUARDIAN JOURNAL</p><h2 id="journalTitle">Achievements</h2></div><button id="closeJournal" aria-label="Close journal">×</button></div><div id="journalContent" class="journal-content"></div></div>
+    </section>
+    <section id="specializationModal" class="secret-modal hidden">
+      <div class="secret-card specialization-card"><p class="eyebrow">LEVEL 3 EVOLUTION</p><h2>Choose a permanent path</h2><p id="specializationPrompt"></p><div id="specializationChoices" class="specialization-choices"></div><button id="cancelSpecialization" class="secondary">Not yet</button></div>
     </section>
     <section id="cheatPanel" class="secret-modal hidden">
       <div class="secret-card cheat-card"><div class="cheat-head"><div><p class="eyebrow">SECRET DEVELOPER PANEL</p><h2>Reality controls</h2></div><button id="closeCheats" aria-label="Close cheat panel">×</button></div>
