@@ -125,7 +125,7 @@
     <section id="mapCreatorModal" class="secret-modal hidden">
       <div class="secret-card creator-card"><div class="cheat-head"><div><p class="eyebrow">GROVE WORKSHOP</p><h2>Map Creator</h2><p>Draw a path from the orange entrance to the green Heartwood, decorate it, then play or share it.</p></div><button id="closeMapCreator" aria-label="Close map creator">×</button></div>
         <label class="creator-name">MAP NAME<input id="creatorMapName" maxlength="24" value="My Grove" /></label>
-        <div class="creator-tools" role="toolbar" aria-label="Map creator tools"><button class="active" data-creator-tool="path">Draw path</button><button data-creator-tool="obstacle">Obstacle</button><button data-creator-tool="range">Range buff</button><button data-creator-tool="damage">Damage buff</button><button data-creator-tool="trap">Slow trap</button><button id="creatorUndo">Undo</button><button id="creatorClear">Clear</button></div>
+        <div class="creator-tools" role="toolbar" aria-label="Map creator tools"><button class="active" data-creator-tool="path">Draw path</button><button data-creator-tool="obstacle">Obstacle</button><button data-creator-tool="range">Range buff</button><button data-creator-tool="damage">Damage buff</button><button data-creator-tool="trap">Slow trap</button><button id="creatorUndo">Undo</button><button id="creatorRedo">Redo</button><button id="creatorClear">Clear</button></div>
         <canvas id="creatorCanvas" width="960" height="560" aria-label="Custom map drawing area"></canvas><p id="creatorHint" class="creator-hint">Click several points to draw the enemy path. The first and last points are automatically connected to the edges.</p>
         <label class="creator-code">SHARE CODE<textarea id="creatorCode" rows="3" placeholder="Create a map to generate a code, or paste a friend's code here."></textarea></label>
         <div class="creator-actions"><button id="creatorImport" class="secondary">Import code</button><button id="creatorCopy" class="secondary">Copy code</button><button id="creatorPlay" class="primary">Save &amp; play map</button></div>
@@ -164,7 +164,7 @@
       </div>
     </section>
   <script>window.addEventListener('error',event=>{document.documentElement.dataset.bootError=event.message||'Game startup error';});</script>
-  <script src="game.js?v=20260809-14"></script>
+  <script src="game.js?v=20260809-16"></script>
   <script>if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));</script>
   </body>
 </html>
