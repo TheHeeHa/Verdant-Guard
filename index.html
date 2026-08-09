@@ -10,7 +10,7 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <title>Verdant Guard — Tower Defense</title>
     <style>html,body{margin:0;min-height:100%;background:#071313;color:#e8f5ef}.boot-screen{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:radial-gradient(circle at 50% 38%,#173a2d,#071313 62%);transition:opacity .35s ease,visibility .35s ease}.boot-screen.ready{opacity:0;visibility:hidden}.boot-mark{text-align:center;font-family:Georgia,serif}.boot-leaf{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 14px;border:1px solid #6d9b77;border-radius:50%;color:#c8f55f;background:#102a22;box-shadow:0 0 35px #78b36b33;font-size:25px;animation:bootPulse 1.1s ease-in-out infinite}.boot-mark strong{display:block;color:#f1fff8;font-size:25px}.boot-mark span{display:block;margin-top:7px;color:#86a69a;font:9px sans-serif;letter-spacing:.18em}@keyframes bootPulse{50%{transform:scale(1.07);box-shadow:0 0 48px #a4e37a55}}</style>
-    <link rel="stylesheet" href="styles.css?v=20260808-11" />
+    <link rel="stylesheet" href="styles.css?v=20260809-12" />
   </head>
   <body>
     <div id="bootScreen" class="boot-screen"><div class="boot-mark"><div class="boot-leaf">◆</div><strong>Verdant Guard</strong><span>AWAKENING THE GROVE…</span></div></div>
@@ -22,7 +22,6 @@
         <p id="startSecretCount" class="start-secret-count hidden"></p>
         <p class="start-copy">Choose your name and the land you will defend.</p>
         <p id="progressText" class="progress-text">No victories recorded yet.</p>
-        <section class="save-area"><div class="save-heading"><span>SAVE SLOTS</span><small id="saveSlotHint">Higher Guardian levels unlock more slots.</small></div><div id="saveSlots" class="save-slots"></div></section>
         <label class="name-field"><span>GUARDIAN NAME</span><input id="playerName" maxlength="18" placeholder="Enter your name" autocomplete="off" /></label>
         <div class="life-picker"><span>STARTING LIVES</span><div role="radiogroup" aria-label="Choose starting lives"><button data-lives="1" role="radio" aria-checked="false">1</button><button class="selected" data-lives="3" role="radio" aria-checked="true">3</button><button data-lives="5" role="radio" aria-checked="false">5</button><button data-lives="10" role="radio" aria-checked="false">10</button></div><small>Each life begins with 100 health</small></div>
         <div class="map-heading"><span>CHOOSE A MAP</span><small>Harder maps have more obstacles and tougher enemies</small></div>
@@ -37,6 +36,7 @@
           <section><span>TOWER STYLE</span><select id="cosmeticSelect"><option value="classic">Classic grove</option><option value="moonlit">Moonlit (Level 2)</option><option value="golden">Golden (Level 4)</option><option value="ember">Ember (Level 7)</option></select><label class="sandbox-wave">Sandbox starting wave<input id="sandboxWaveStart" type="number" min="1" max="99" value="1" /></label></section>
         </div>
         <div class="meta-actions"><button id="tutorialButton" class="secondary tutorial-launch">Tutorials &amp; Map Explorer</button><button id="achievementsButton" class="secondary">Achievements</button><button id="encyclopediaButton" class="secondary">Enemy encyclopedia</button><button id="installButton" class="secondary install-app">Install app</button></div>
+        <section class="save-area"><div class="save-heading"><span>SAVE SLOTS</span><small id="saveSlotHint">Higher Guardian levels unlock more slots.</small></div><label class="save-search"><span>⌕</span><input id="saveSearch" type="search" placeholder="Search named saves" autocomplete="off" /></label><div id="saveSlots" class="save-slots"></div></section>
         <button id="changeDeviceButton" class="device-change">Change format · Desktop</button><button id="beginButton" class="primary begin-button">Begin defense</button>
       </div>
     </section>
@@ -124,6 +124,9 @@
     <section id="quitModal" class="secret-modal hidden">
       <div class="secret-card password-card quit-card"><p class="eyebrow">LEAVE THIS DEFENSE?</p><h2>Save before quitting?</h2><p>Your save resumes safely between waves. If a wave is active, you will replay it.</p><label class="remember-choice"><input id="rememberQuitChoice" type="checkbox" /> Remember my choice</label><div class="quit-actions"><button id="cancelQuit" class="secondary">Keep playing</button><button id="discardQuit" class="secondary danger">Quit without saving</button><button id="saveQuit" class="primary">Save &amp; quit</button></div></div>
     </section>
+    <section id="renameSaveModal" class="secret-modal hidden">
+      <div class="secret-card password-card"><p class="eyebrow">RENAME SAVE SLOT</p><h2>Name this defense</h2><input id="saveRenameInput" maxlength="24" placeholder="Save name" autocomplete="off" /><div class="secret-actions"><button id="cancelSaveRename" class="secondary">Cancel</button><button id="confirmSaveRename" class="primary">Rename</button></div></div>
+    </section>
     <section id="journalModal" class="secret-modal hidden">
       <div class="secret-card journal-card"><div class="cheat-head"><div><p class="eyebrow">GUARDIAN JOURNAL</p><h2 id="journalTitle">Achievements</h2></div><button id="closeJournal" aria-label="Close journal">×</button></div><div id="journalContent" class="journal-content"></div></div>
     </section>
@@ -151,7 +154,7 @@
       </div>
     </section>
   <script>window.addEventListener('error',event=>{document.documentElement.dataset.bootError=event.message||'Game startup error';});</script>
-  <script src="game.js?v=20260808-11"></script>
+  <script src="game.js?v=20260809-12"></script>
   <script>if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));</script>
   </body>
 </html>
