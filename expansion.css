@@ -21,3 +21,35 @@
 .format-choice{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .format-choice button.active{border-color:#c8f55f;color:#c8f55f;background:#172f27}
 .stat-point-stat strong{color:#d9c7ff}
+
+/* Suggestions, reviewer inbox, and owner cheat-usage audit */
+.feedback-card{width:min(900px,96vw)}
+.feedback-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:16px 0}
+.feedback-tabs button{padding:10px;border:1px solid #3f5f55;border-radius:9px;color:#a8bdb5;background:#0b1d1b}
+.feedback-tabs button.active{border-color:#c8f55f;color:#efffc5;background:#263b21}
+.feedback-form,.reviewer-manager{display:grid;gap:11px}
+.feedback-form label,.reviewer-manager label{color:#91aaa1;font-size:9px;font-weight:900;letter-spacing:.08em}
+.feedback-form input,.feedback-form select,.feedback-form textarea,.reviewer-manager input{width:100%;margin-top:6px;padding:10px;border:1px solid #45645a;border-radius:8px;resize:vertical;color:#eefbf5;background:#081616}
+.feedback-form textarea{min-height:150px}
+.feedback-status{min-height:18px;margin:0;color:#9db4ab;font-size:10px}
+.feedback-status.success{color:#c8f55f}
+.feedback-status.error{color:#ff9c91}
+.feedback-list,.reviewer-list,.cheat-audit-list{display:grid;gap:9px}
+.feedback-entry,.reviewer-entry,.cheat-audit-entry{padding:13px;border:1px solid #3d5a52;border-radius:11px;background:#0b1d1c}
+.feedback-entry-head,.reviewer-entry,.cheat-audit-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.feedback-entry h3,.cheat-audit-entry h3{margin:0;color:#effaf5;font:18px Georgia,serif}
+.feedback-entry p,.cheat-audit-entry p{margin:9px 0;color:#b5c9c1;font-size:10px;line-height:1.55;white-space:pre-wrap}
+.feedback-entry small,.reviewer-entry small,.cheat-audit-entry small{display:block;margin-top:4px;color:#80978e;font-size:8px}
+.feedback-type,.feedback-state,.audit-surface{display:inline-block;padding:4px 7px;border-radius:99px;color:#eaffc6;background:#263c21;font-size:8px;font-weight:900;text-transform:uppercase}
+.feedback-state[data-state="closed"]{color:#aebdb8;background:#26302d}
+.feedback-state[data-state="planned"]{color:#ffe6a5;background:#493614}
+.feedback-state[data-state="reviewed"]{color:#d9c7ff;background:#30294b}
+.feedback-review-actions,.reviewer-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.feedback-review-actions button,.reviewer-actions button{padding:7px 9px;border:1px solid #48665c;border-radius:7px;color:#d8ebe3;background:#102522;font-size:9px}
+.feedback-review-actions button.active{border-color:#c8f55f;color:#efffc5}
+.reviewer-add{display:grid;grid-template-columns:1fr auto;gap:8px}
+.reviewer-add button{align-self:end;padding:10px 14px}
+.audit-surface.home{color:#d9c7ff;background:#30294b}
+.audit-surface.game{color:#c6edff;background:#173847}
+.audit-summary{margin:4px 0 12px;color:#93aaa1;font-size:10px}
+@media(max-width:700px){.feedback-tabs{grid-template-columns:1fr}.feedback-entry-head,.reviewer-entry,.cheat-audit-head{display:block}.reviewer-add{grid-template-columns:1fr}}
