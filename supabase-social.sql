@@ -649,3 +649,18 @@ create policy maps_read on public.custom_maps for select to authenticated using 
     )
   )
 );
+
+-- Owner-only map-list organization. This does not change a creator's map visibility.
+alter table public.custom_maps add column if not exists owner_archived_at timestamptz;
+
+create or replace function public.owner_set_map_archive(p_map uuid,p_archived boolean)
+returns void language plpgsql security definer set search_path=public as $$
+begin
+  if not public.is_owner() then raise exception 'Owner access required'; end if;
+  update public.custom_maps
+  set owner_archived_at=case when p_archived then now() else null end
+  where id=p_map;
+end;
+$$;
+
+grant execute on function public.owner_set_map_archive(uuid,boolean) to authenticated;
