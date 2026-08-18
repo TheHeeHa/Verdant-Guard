@@ -622,3 +622,30 @@ grant select on public.player_notifications to authenticated;
 grant update(read) on public.player_notifications to authenticated;
 grant select on public.owner_broadcasts to anon,authenticated;
 grant execute on function public.owner_send_broadcast(text,text,text,text,text) to authenticated;
+
+-- Retain map history for owner review, including visibility and archive/delete status.
+alter table public.custom_maps add column if not exists archived_at timestamptz;
+alter table public.custom_maps add column if not exists deleted_at timestamptz;
+
+update public.custom_maps
+set archived_at=coalesce(archived_at,updated_at)
+where coalesce((map_data->>'archived')::boolean,false) and archived_at is null;
+
+update public.custom_maps
+set map_data=jsonb_set(
+  jsonb_set(coalesce(map_data,'{}'::jsonb),'{archived}',to_jsonb(archived_at is not null),true),
+  '{deleted}',to_jsonb(deleted_at is not null),true
+);
+
+drop policy if exists maps_read on public.custom_maps;
+create policy maps_read on public.custom_maps for select to authenticated using (
+  public.is_owner()
+  or owner_id=auth.uid()
+  or (
+    deleted_at is null and archived_at is null and (
+      visibility='public'
+      or (visibility='friends' and public.are_friends(owner_id,auth.uid()))
+      or visibility='code'
+    )
+  )
+);
