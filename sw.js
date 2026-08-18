@@ -1,4 +1,4 @@
-const CACHE='verdant-guard-v37';
+const CACHE='verdant-guard-v38';
 const CORE=['./','./index.html','./styles.css?v=20260818-5','./expansion.css?v=20260818-5','./game.js?v=20260818-5','./expansion.js?v=20260818-5','./manifest.webmanifest','./icon-192.png','./icon-512.png','./apple-touch-icon.png','./gameplay.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
