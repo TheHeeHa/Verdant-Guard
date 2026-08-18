@@ -30,6 +30,19 @@ returns boolean language sql stable security definer set search_path=public,auth
     and not exists(select 1 from auth.users where raw_user_meta_data->>'username'=p_username);
 $$;
 
+-- Supabase password sign-in requires an email internally. The game resolves the
+-- exact username first so players only need to enter username + password.
+create or replace function public.login_email_for_username(p_username text)
+returns text language sql stable security definer set search_path=public,auth as $$
+  select u.email
+  from public.profiles p
+  join auth.users u on u.id=p.id
+  where p.username=p_username
+  limit 1;
+$$;
+revoke all on function public.login_email_for_username(text) from public;
+grant execute on function public.login_email_for_username(text) to anon,authenticated;
+
 create or replace function public.reject_duplicate_auth_username()
 returns trigger language plpgsql security definer set search_path=public,auth as $$
 declare requested text:=new.raw_user_meta_data->>'username';
