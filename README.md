@@ -21,13 +21,16 @@ Enemies travel along a visible path toward the Heartwood. Build towers on open t
 
 ## Modes and progression
 
+- **Level progression:** Dewdrop Glade is available first. Beat each built-in level to unlock the next one in difficulty order, with an animated unlock reveal.
 - **Classic:** Play the standard eight-wave defense and earn permanent map victories.
-- **Story Campaign:** Join stick-figure heroes Rowan, Pip, and Elder Moss in a ten-scene adventure to rebuild the shattered Heartseed. Each built-in map has its own crisis, clues, solution, and ending, with bosses on waves 4, 8, and 12. Story scenes can be skipped on repeat plays.
+- **Story Campaign:** Join stick-figure heroes Rowan, Pip, and Elder Moss in one continuous twelve-level journey to rebuild the shattered Heartseed. Each victory recovers the next fragment and directly leads into the following map. Every level contains ten scenes and bosses on waves 4, 8, and 12.
 - **Endless:** Continue through unlimited scaling waves and recurring bosses.
 - **Daily Challenge:** Play a date-based map and modifier combination.
 - **Sandbox:** Test strategies with abundant credits, invincibility, and a selectable starting wave.
 - **Achievements and encyclopedia:** Complete challenges and discover enemy entries while playing.
-- **Guardian progression:** Earn XP, increase your Guardian Level, and unlock cosmetic tower styles.
+- **Guardian progression:** Earn XP, increase your Guardian Level, unlock cosmetic tower styles, and earn player titles through enemy defeats, bosses, quests, achievements, and map victories.
+- **Titles:** The verified owner has every built-in title and can create private custom titles or shared custom-title codes. Other players can only equip titles they have earned or imported from the owner.
+- **Friends:** Signed-in players can send direct messages to accepted friends from the Social Center.
 - **Tutorials & Map Explorer:** Use interactive lessons for core systems, every mode and modifier, or inspect each map's important terrain.
 
 ## All 21 towers

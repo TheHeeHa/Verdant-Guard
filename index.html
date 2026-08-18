@@ -10,8 +10,8 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <title>Verdant Guard — Tower Defense</title>
     <style>html,body{margin:0;min-height:100%;background:#071313;color:#e8f5ef}.boot-screen{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:radial-gradient(circle at 50% 38%,#173a2d,#071313 62%);transition:opacity .35s ease,visibility .35s ease}.boot-screen.ready{opacity:0;visibility:hidden}.boot-mark{text-align:center;font-family:Georgia,serif}.boot-leaf{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 14px;border:1px solid #6d9b77;border-radius:50%;color:#c8f55f;background:#102a22;box-shadow:0 0 35px #78b36b33;font-size:25px;animation:bootPulse 1.1s ease-in-out infinite}.boot-mark strong{display:block;color:#f1fff8;font-size:25px}.boot-mark span{display:block;margin-top:7px;color:#86a69a;font:9px sans-serif;letter-spacing:.18em}@keyframes bootPulse{50%{transform:scale(1.07);box-shadow:0 0 48px #a4e37a55}}</style>
-    <link rel="stylesheet" href="styles.css?v=20260818-6" />
-    <link rel="stylesheet" href="expansion.css?v=20260818-6" />
+    <link rel="stylesheet" href="styles.css?v=20260818-9" />
+    <link rel="stylesheet" href="expansion.css?v=20260818-9" />
   </head>
   <body>
     <div id="bootScreen" class="boot-screen"><div class="boot-mark"><div class="boot-leaf">◆</div><strong>Verdant Guard</strong><span>AWAKENING THE GROVE…</span></div></div>
@@ -26,7 +26,7 @@
         <p id="progressText" class="progress-text">No victories recorded yet.</p>
         <label class="name-field"><span>GUARDIAN NAME</span><input id="playerName" maxlength="18" placeholder="Enter your name" autocomplete="off" /></label>
         <div class="life-picker"><span>STARTING LIVES</span><div role="radiogroup" aria-label="Choose starting lives"><button data-lives="1" role="radio" aria-checked="false">1</button><button class="selected" data-lives="3" role="radio" aria-checked="true">3</button><button data-lives="5" role="radio" aria-checked="false">5</button><button data-lives="10" role="radio" aria-checked="false">10</button></div><small>Each life begins with 100 health</small></div>
-        <div class="map-heading"><span>CHOOSE A MAP</span><small>Harder maps have more obstacles and tougher enemies</small></div>
+        <div class="map-heading"><span>CHOOSE A LEVEL</span><small>Beat each level to unlock the next</small></div>
         <div class="map-grid" role="radiogroup" aria-label="Choose a map">
           <button class="map-card selected" data-map="dewdrop" role="radio" aria-checked="true"><span class="map-art peace-art"><i></i></span><b>Dewdrop Glade</b><small>PEACEFUL · Extra credits + gentle swarm</small></button>
           <button class="map-card" data-map="willowbrook" role="radio" aria-checked="false"><span class="map-art beginner-art"><i></i></span><b>Willowbrook</b><small>BEGINNER · Simple turns + training buffs</small></button>
@@ -110,8 +110,9 @@
           </div>
         </div>
 
+        <div id="sidebarResizeHandle" class="sidebar-resize-handle" role="separator" aria-label="Resize build sidebar" aria-orientation="vertical" aria-valuemin="220" aria-valuemax="440" aria-valuenow="290" tabindex="0"><span></span></div>
         <aside class="panel">
-          <div class="panel-head"><p class="eyebrow">BUILD DECK</p><h2>Choose a tower</h2><label class="sidebar-size-control">Sidebar size <input id="sidebarSize" type="range" min="220" max="440" step="10" value="290" /><output id="sidebarSizeValue">290px</output></label></div>
+          <div class="panel-head"><p class="eyebrow">BUILD DECK</p><h2>Choose a tower</h2><small class="sidebar-resize-hint">Drag the divider to resize this sidebar</small></div>
           <button class="tower-card selected" data-tower="sprout" aria-pressed="true">
             <span class="tower-glyph sprout">●</span><span><b>Sprout</b><small>Fast, reliable shots</small></span><strong>40</strong>
           </button>
@@ -194,6 +195,9 @@
 
     <section id="creatorCheatPanel" class="secret-modal creator-cheat-panel hidden"><div class="secret-card cheat-card"><div class="cheat-head"><div><p class="eyebrow">CREATOR REALITY CONTROLS</p><h2>Map Creator Cheats</h2><p>Test shortcuts and preplaced defenses. Every open and action is logged.</p></div><button id="closeCreatorCheats" aria-label="Close map creator cheats">×</button></div><div class="cheat-grid"><section><h3>Player setup</h3><div class="cheat-fields"><label>Starting credits<input id="creatorCheatCredits" type="number" min="0" max="999999" value="120" /></label><label>Starting health<input id="creatorCheatHealth" type="number" min="1" max="100" value="100" /></label><label>Starting lives<input id="creatorCheatLives" type="number" min="1" max="99" value="3" /></label><label>Test starting wave<input id="creatorCheatStartWave" type="number" min="1" max="99" value="1" /></label></div><label class="cheat-check"><input id="creatorCheatInvincible" type="checkbox" /> Invincible while the creator tests</label><button id="applyCreatorCheats" class="primary">Apply setup</button></section><section><h3>Preplaced tower</h3><div class="cheat-fields"><label>Tower<select id="creatorCheatTowerType"></select></label><label>Level<input id="creatorCheatTowerLevel" type="number" min="1" max="1000000" value="1" /></label><label>X<input id="creatorCheatTowerX" type="number" min="0" max="960" value="480" /></label><label>Y<input id="creatorCheatTowerY" type="number" min="0" max="560" value="280" /></label></div><div class="secret-actions"><button id="addCreatorPreplacedTower" class="primary">Add tower</button><button id="clearCreatorPreplacedTowers" class="secondary">Clear towers</button></div></section><section><h3>Quick creator cheats</h3><div class="quick-actions"><button id="creatorCheatRich" class="secondary">99,999 starting credits</button><button id="creatorCheatRoster" class="secondary">Generate balanced roster</button><button id="creatorCheatClearNoBuild" class="secondary">Clear no-build zones</button><button id="creatorCheatMaxWaves" class="secondary">100 waves</button></div></section></div></div></section>
     <aside id="globalMessage" class="global-message hidden" role="status" aria-live="assertive"><button id="closeGlobalMessage" aria-label="Dismiss message">×</button><div id="globalMessageText"></div></aside>
+    <section id="mapUnlockCelebration" class="map-unlock-celebration hidden" role="dialog" aria-modal="true" aria-labelledby="mapUnlockName">
+      <div class="map-unlock-card"><div class="unlock-rays"></div><div class="unlock-emblem"><i></i><span>◆</span></div><p>NEW LEVEL UNLOCKED</p><h2 id="mapUnlockName">Willowbrook</h2><strong id="mapUnlockStep">LEVEL 2 OF 12</strong><div id="mapUnlockTrail" class="map-unlock-trail" aria-label="Level journey progress"></div><button id="continueUnlockButton" class="primary">Continue the journey</button></div>
+    </section>
     <section id="guardianCenterModal" class="secret-modal hidden"><div class="secret-card guardian-center-card"><div class="cheat-head"><div><p class="eyebrow">GUARDIAN CENTER</p><h2>Verdant Guard Expanded</h2><p>Events, quests, competition, creation, progression, accessibility, and cloud tools.</p></div><button id="closeGuardianCenter" aria-label="Close Guardian Center">×</button></div><nav id="guardianCenterTabs" class="center-tabs"><button class="active" data-center-tab="quests">Quests</button><button data-center-tab="story">Story</button><button data-center-tab="events">Events</button><button data-center-tab="compete">Compete</button><button data-center-tab="replays">Replays</button><button data-center-tab="rankings">Rankings</button><button data-center-tab="collection">Collection</button><button data-center-tab="creator">Creator+</button><button data-center-tab="cloud">Cloud &amp; Safety</button></nav><div id="guardianCenterContent" class="center-content"></div></div></section>
     <section id="settingsModal" class="secret-modal hidden"><div class="secret-card settings-card"><div class="cheat-head"><div><p class="eyebrow">PLAYER ACCOUNT</p><h2>Settings</h2><p id="settingsAccountState">Playing as Guest</p></div><button id="closeSettings" aria-label="Close settings">×</button></div><nav class="settings-tabs"><button class="active" data-settings-tab="general">General</button><button data-settings-tab="account">Account</button><button data-settings-tab="profile">Profile</button><button data-settings-tab="privacy">Privacy &amp; Friends</button><button data-settings-tab="danger">Danger</button></nav><div id="settingsContent"></div></div></section>
     <section id="socialModal" class="secret-modal hidden"><div class="secret-card social-card"><div class="cheat-head"><div><p class="eyebrow">GUARDIAN NETWORK</p><h2>Players &amp; Friends</h2><p>Find Guardians, see their maps, manage requests, and message accepted friends.</p></div><button id="closeSocial" aria-label="Close players and friends">×</button></div><nav class="social-tabs"><button class="active" data-social-tab="search">Search Players</button><button data-social-tab="friends">Friends &amp; Requests</button><button data-social-tab="messages">Messages</button></nav><div id="socialContent"></div></div></section>
@@ -234,8 +238,8 @@
     </section>
   <script>window.addEventListener('error',event=>{document.documentElement.dataset.bootError=event.message||'Game startup error';});</script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="game.js?v=20260818-6"></script>
-  <script src="expansion.js?v=20260818-6"></script>
+  <script src="game.js?v=20260818-9"></script>
+  <script src="expansion.js?v=20260818-9"></script>
   <script>if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));</script>
   </body>
 </html>
