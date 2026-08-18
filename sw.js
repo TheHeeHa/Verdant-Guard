@@ -1,5 +1,5 @@
-const CACHE='verdant-guard-v38';
-const CORE=['./','./index.html','./styles.css?v=20260818-5','./expansion.css?v=20260818-5','./game.js?v=20260818-5','./expansion.js?v=20260818-5','./manifest.webmanifest','./icon-192.png','./icon-512.png','./apple-touch-icon.png','./gameplay.png'];
+const CACHE='verdant-guard-v39';
+const CORE=['./','./index.html','./styles.css?v=20260818-6','./expansion.css?v=20260818-6','./game.js?v=20260818-6','./expansion.js?v=20260818-6','./manifest.webmanifest','./icon-192.png','./icon-512.png','./apple-touch-icon.png','./gameplay.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{if(event.request.method!=='GET')return;event.respondWith(fetch(event.request).then(response=>{const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,copy));return response;}).catch(()=>caches.match(event.request).then(hit=>hit||caches.match('./index.html'))));});

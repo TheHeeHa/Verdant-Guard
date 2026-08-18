@@ -22,7 +22,7 @@ Enemies travel along a visible path toward the Heartwood. Build towers on open t
 ## Modes and progression
 
 - **Classic:** Play the standard eight-wave defense and earn permanent map victories.
-- **Story Campaign:** Fight a twelve-wave, three-chapter boss gauntlet on your selected map, with bosses on waves 4, 8, and 12.
+- **Story Campaign:** Join stick-figure heroes Rowan, Pip, and Elder Moss in a ten-scene adventure to rebuild the shattered Heartseed. Each built-in map has its own crisis, clues, solution, and ending, with bosses on waves 4, 8, and 12. Story scenes can be skipped on repeat plays.
 - **Endless:** Continue through unlimited scaling waves and recurring bosses.
 - **Daily Challenge:** Play a date-based map and modifier combination.
 - **Sandbox:** Test strategies with abundant credits, invincibility, and a selectable starting wave.
