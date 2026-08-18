@@ -22,7 +22,7 @@ Enemies travel along a visible path toward the Heartwood. Build towers on open t
 ## Modes and progression
 
 - **Classic:** Play the standard eight-wave defense and earn permanent map victories.
-- **Story Campaign:** Follow an extended defense with additional progression.
+- **Story Campaign:** Fight a twelve-wave, three-chapter boss gauntlet on your selected map, with bosses on waves 4, 8, and 12.
 - **Endless:** Continue through unlimited scaling waves and recurring bosses.
 - **Daily Challenge:** Play a date-based map and modifier combination.
 - **Sandbox:** Test strategies with abundant credits, invincibility, and a selectable starting wave.
@@ -51,7 +51,7 @@ Enemies travel along a visible path toward the Heartwood. Build towers on open t
 | Portal Tower | Teleports enemies backward |
 | Mirror Tower | Copies the nearest attack tower |
 | Executioner | Finishes enemies below 20% health |
-| Treasure Hunter | Nearby kills can drop bonuses |
+| Treasure Hunter | Nearby kills independently roll for bonus credits and rare Stat Points |
 | Ancient Oak | Blocks the path until destroyed |
 | Drone Nest | Launches reusable seeker drones |
 | Gravity Well | Pulls and slows nearby enemies |
@@ -72,7 +72,7 @@ Stat Points are earned during ranked play and from special tower effects. Select
 
 Medium and Hard maps contain placement-blocking obstacles. Special terrain can increase range or damage, while bramble traps slow enemies. Optional modifiers add faster swarms, tougher armored ranks, reduced income, or a one-tower-type restriction.
 
-Later waves introduce Runners, Ironbacks, regenerating Lifeblooms, Splitters, Menders, and multiple bosses with armor, shields, or summoning powers.
+The twelve built-in maps form a full ladder: Peaceful, Beginner, Super Easy, Easy, Normal, Hard, Extreme, Insane, Nightmare, Mythic, Impossible, and Verdant Doom. Later maps progressively introduce Burrowers, Sap Thieves, Rootbreakers, Phase Wisps, Banner Beetles, Seed Carriers, Time Moths, and bosses with armor, shields, summoning, healing, time control, or tower disruption.
 
 ## Built with
 
