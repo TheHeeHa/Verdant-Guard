@@ -21,7 +21,7 @@ Enemies travel along a visible path toward the Heartwood. Build towers on open t
 
 ## Modes and progression
 
-- **Story map access:** Map locks apply only to Story Campaign. The next two chapters and the final three are locked; every other map stays selectable. Classic, Endless, Daily Challenge, and Sandbox do not lock built-in maps.
+- **Story map access:** Map locks apply only to Story Campaign. Dewdrop Glade starts unlocked, and each victory unlocks the next chapter in order. Classic, Endless, Daily Challenge, and Sandbox do not lock built-in maps.
 - **Classic:** Play the standard eight-wave defense and earn permanent map victories.
 - **Story Campaign:** Join stick-figure heroes Rowan, Pip, and Elder Moss in one continuous twelve-level journey to rebuild the shattered Heartseed. Each victory recovers the next fragment and directly leads into the following map. Every level contains ten scenes and bosses on waves 4, 8, and 12.
 - **Endless:** Continue through unlimited scaling waves and recurring bosses.
