@@ -21,7 +21,7 @@ Enemies travel along a visible path toward the Heartwood. Build towers on open t
 
 ## Modes and progression
 
-- **Level progression:** Dewdrop Glade is available first. Beat each built-in level to unlock the next one in difficulty order, with an animated unlock reveal.
+- **Story map access:** Map locks apply only to Story Campaign. The next two chapters and the final three are locked; every other map stays selectable. Classic, Endless, Daily Challenge, and Sandbox do not lock built-in maps.
 - **Classic:** Play the standard eight-wave defense and earn permanent map victories.
 - **Story Campaign:** Join stick-figure heroes Rowan, Pip, and Elder Moss in one continuous twelve-level journey to rebuild the shattered Heartseed. Each victory recovers the next fragment and directly leads into the following map. Every level contains ten scenes and bosses on waves 4, 8, and 12.
 - **Endless:** Continue through unlimited scaling waves and recurring bosses.
@@ -29,7 +29,11 @@ Enemies travel along a visible path toward the Heartwood. Build towers on open t
 - **Sandbox:** Test strategies with abundant credits, invincibility, and a selectable starting wave.
 - **Achievements and encyclopedia:** Complete challenges and discover enemy entries while playing.
 - **Guardian progression:** Earn XP, increase your Guardian Level, unlock cosmetic tower styles, and earn player titles through enemy defeats, bosses, quests, achievements, and map victories.
-- **Titles:** The verified owner has every built-in title and can create private custom titles or shared custom-title codes. Other players can only equip titles they have earned or imported from the owner.
+- **Secret level:** Beat Void Garden to permanently reveal The Vanished Grove, where alternating halves of the battlefield phase out between waves. Its first victory awards 10 Stat Points, the Riftwalker title, the Voidgrown tower style, and the Nothing Stays Lost achievement.
+- **Seasonal board:** Summer’s End is labeled as a future concept; the game does not claim that unfinished seasonal maps or rewards are active.
+- **Titles:** The verified owner has every built-in title and can create private or grantable custom titles. Grantable titles are given and taken away using an exact username. A player who receives one may share its title code with someone else.
+- **Map atmosphere:** Every built-in battlefield uses the palette shown on its map card. Story battles shift through corrupted haze, themed particles, danger effects, and restored light as their waves advance.
+- **Background notifications:** On supported installed devices, the service worker checks for fresh owner broadcasts and account alerts even while the game window is closed. The setting is offered only when the browser supports background checks and notification permission is granted.
 - **Friends:** Signed-in players can send direct messages to accepted friends from the Social Center.
 - **Tutorials & Map Explorer:** Use interactive lessons for core systems, every mode and modifier, or inspect each map's important terrain.
 
