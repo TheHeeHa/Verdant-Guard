@@ -10,8 +10,8 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <title>Verdant Guard — Tower Defense</title>
     <style>html,body{margin:0;min-height:100%;background:#071313;color:#e8f5ef}.boot-screen{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:radial-gradient(circle at 50% 38%,#173a2d,#071313 62%);transition:opacity .35s ease,visibility .35s ease}.boot-screen.ready{opacity:0;visibility:hidden}.boot-mark{text-align:center;font-family:Georgia,serif}.boot-leaf{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 14px;border:1px solid #6d9b77;border-radius:50%;color:#c8f55f;background:#102a22;box-shadow:0 0 35px #78b36b33;font-size:25px;animation:bootPulse 1.1s ease-in-out infinite}.boot-mark strong{display:block;color:#f1fff8;font-size:25px}.boot-mark span{display:block;margin-top:7px;color:#86a69a;font:9px sans-serif;letter-spacing:.18em}@keyframes bootPulse{50%{transform:scale(1.07);box-shadow:0 0 48px #a4e37a55}}</style>
-    <link rel="stylesheet" href="styles.css?v=20260818-9" />
-    <link rel="stylesheet" href="expansion.css?v=20260818-9" />
+    <link rel="stylesheet" href="styles.css?v=20260823-17" />
+    <link rel="stylesheet" href="expansion.css?v=20260823-17" />
   </head>
   <body>
     <div id="bootScreen" class="boot-screen"><div class="boot-mark"><div class="boot-leaf">◆</div><strong>Verdant Guard</strong><span>AWAKENING THE GROVE…</span></div></div>
@@ -26,7 +26,7 @@
         <p id="progressText" class="progress-text">No victories recorded yet.</p>
         <label class="name-field"><span>GUARDIAN NAME</span><input id="playerName" maxlength="18" placeholder="Enter your name" autocomplete="off" /></label>
         <div class="life-picker"><span>STARTING LIVES</span><div role="radiogroup" aria-label="Choose starting lives"><button data-lives="1" role="radio" aria-checked="false">1</button><button class="selected" data-lives="3" role="radio" aria-checked="true">3</button><button data-lives="5" role="radio" aria-checked="false">5</button><button data-lives="10" role="radio" aria-checked="false">10</button></div><small>Each life begins with 100 health</small></div>
-        <div class="map-heading"><span>CHOOSE A LEVEL</span><small>Beat each level to unlock the next</small></div>
+        <div class="map-heading"><span>CHOOSE A LEVEL</span><small>Story locks the next 2 chapters and the final 3</small></div>
         <div class="map-grid" role="radiogroup" aria-label="Choose a map">
           <button class="map-card selected" data-map="dewdrop" role="radio" aria-checked="true"><span class="map-art peace-art"><i></i></span><b>Dewdrop Glade</b><small>PEACEFUL · Extra credits + gentle swarm</small></button>
           <button class="map-card" data-map="willowbrook" role="radio" aria-checked="false"><span class="map-art beginner-art"><i></i></span><b>Willowbrook</b><small>BEGINNER · Simple turns + training buffs</small></button>
@@ -41,10 +41,16 @@
           <button class="map-card" data-map="shattered" role="radio" aria-checked="false"><span class="map-art impossible-art"><i></i></span><b>Shattered Canopy</b><small>IMPOSSIBLE · Eclipse Stag assault</small></button>
           <button class="map-card" data-map="doomgrove" role="radio" aria-checked="false"><span class="map-art doom-art"><i></i></span><b>Heartwood's End</b><small>VERDANT DOOM · All three new bosses</small></button>
         </div>
+        <section id="secretMapSection" class="secret-map-section hidden">
+          <div class="map-heading"><span>SECRET LEVELS</span><small>Recovered from beyond the rift</small></div>
+          <div class="map-grid secret-map-grid" role="radiogroup" aria-label="Choose a secret map">
+            <button class="map-card" data-map="vanishedgrove" role="radio" aria-checked="false"><span class="map-art vanished-art"><i></i></span><b>The Vanished Grove</b><small>RIFTBORN · Alternating terrain and tower phases</small></button>
+          </div>
+        </section>
         <div class="adventure-options">
           <section><span>GAME MODE</span><div class="mode-picker" role="radiogroup" aria-label="Choose game mode"><button class="selected" data-mode="campaign" role="radio" aria-checked="true">Classic</button><button data-mode="story" role="radio" aria-checked="false">Story Campaign</button><button data-mode="endless" role="radio" aria-checked="false">Endless</button><button data-mode="daily" role="radio" aria-checked="false">Daily challenge</button><button data-mode="sandbox" role="radio" aria-checked="false">Sandbox</button></div></section>
           <section><span>CHALLENGE MODIFIERS</span><div class="modifier-grid"><label><input type="checkbox" data-modifier="swift" /> Swift swarm</label><label><input type="checkbox" data-modifier="armored" /> Armored ranks</label><label><input type="checkbox" data-modifier="scarcity" /> Scarce credits</label><label><input type="checkbox" data-modifier="single" /> One tower type</label></div></section>
-          <section><span>TOWER STYLE</span><select id="cosmeticSelect"><option value="classic">Classic grove</option><option value="moonlit">Moonlit (Level 2)</option><option value="golden">Golden (Level 4)</option><option value="ember">Ember (Level 7)</option></select><label class="sandbox-wave">Sandbox starting wave<input id="sandboxWaveStart" type="number" min="1" max="99" value="1" /></label></section>
+          <section><span>TOWER STYLE</span><select id="cosmeticSelect"><option value="classic">Classic grove</option><option value="moonlit">Moonlit (Level 2)</option><option value="golden">Golden (Level 4)</option><option value="ember">Ember (Level 7)</option><option value="voidgrown">Voidgrown (The Vanished Grove)</option></select><label class="sandbox-wave">Sandbox starting wave<input id="sandboxWaveStart" type="number" min="1" max="99" value="1" /></label></section>
         </div>
         <div class="menu-tabs"><button id="feedbackButton">✎ Suggestions &amp; Feedback</button><button id="socialButton">☷ Players &amp; Friends</button><button id="adminButton" class="owner-only hidden">◆ Owner</button><button id="settingsButton">⚙ Settings</button><span id="accountBadge">Guest</span></div>
         <div class="meta-actions"><button id="tutorialButton" class="secondary tutorial-launch">Tutorials &amp; Map Explorer</button><button id="mapCreatorButton" class="secondary creator-launch">Map Workshop</button><button id="guardianCenterButton" class="secondary guardian-center-launch">Guardian Center</button><button id="mapSearchButton" class="secondary map-search-launch">Search</button><button id="groupsButton" class="secondary groups-launch">Groups</button><button id="achievementsButton" class="secondary">Achievements</button><button id="encyclopediaButton" class="secondary">Enemy encyclopedia</button><button id="refreshMenuButton" class="secondary">↻ Reload update</button><button id="installButton" class="secondary install-app">Install app</button></div>
@@ -238,8 +244,8 @@
     </section>
   <script>window.addEventListener('error',event=>{document.documentElement.dataset.bootError=event.message||'Game startup error';});</script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="game.js?v=20260818-9"></script>
-  <script src="expansion.js?v=20260818-9"></script>
-  <script>if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));</script>
+  <script src="game.js?v=20260823-17"></script>
+  <script src="expansion.js?v=20260823-17"></script>
+  <script>if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=20260823-17',{updateViaCache:'none'}).then(registration=>registration.update()).catch(()=>{}));</script>
   </body>
 </html>
