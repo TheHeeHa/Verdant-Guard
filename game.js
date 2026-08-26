@@ -165,7 +165,7 @@
   const MAX_CHEAT_LEVEL=1000000;
   let selectedMap='dewdrop', selectedLives=3, selectedMode='campaign', selectedCosmetic='classic', selectedModifiers=[], path=maps.dewdrop.path, obstacles=[], zones=[], traps=[], noBuildZones=[];
   let state, last=performance.now(), hover={x:-999,y:-999}, audio=null, musicTimer=null, soundEventsPlayed=0, guardClicks=0,startGuardClicks=0,startCheatsUnlocked=false,creatorSecretClicks=0,creatorCheatsUnlocked=false,passwordPurpose='game',installPrompt=null,activeSlot=null,renameSlotIndex=null,customMapTestMode=false;
-  let storyContinueAction=null,storyWasPaused=false,roundRestoreAttempted=false;
+  let storyContinueAction=null,storyWasPaused=false,roundRestoreInProgress=false;
   let creator={tool:'path',path:[],obstacles:[],zones:[],traps:[],noBuildZones:[],preplacedTowers:[],testConfig:{},history:[],future:[]},creatorDrawing=false,currentEditingMapId=null,currentSettingsTab='general',drawingType=null,drawingActive=false,drawingPoints=[],editingDrawingId=null;
   const saved=loadSave();
   const supabaseClient=window.supabase?.createClient('https://tetdmsyketpktvprrdhh.supabase.co','sb_publishable_3r0XsLHuf28g-8TbW1G44w_cSFR8ytD');
@@ -246,9 +246,13 @@
     beginGame(activeSlot);Object.assign(state,data.state);state.maxWaves=data.state.maxWaves==='Infinity'?Infinity:data.state.maxWaves;state.gameOver=false;state.paused=!!pause;state.selectedTower=null;state.selectedEnemy=null;state.movingTower=false;state.pickingFeature=false;state.towers=(data.state.towers||[]).map(t=>({...t}));state.enemies=(data.state.enemies||[]).map(e=>({...e}));state.spawnQueue=[...(data.state.spawnQueue||[])];state.specialShots=(data.state.specialShots||[]).map(p=>({...p,tail:(p.tail||[]).map(point=>({...point}))}));state.shots=[];state.effects=[];state.usedTowerTypes=data.state.usedTowerTypes||[...new Set(state.towers.map(t=>t.type))];if(data.terrain){obstacles=(data.terrain.obstacles||[]).map(item=>({...item}));zones=(data.terrain.zones||[]).map(item=>({...item}));traps=(data.terrain.traps||[]).map(item=>({...item}));noBuildZones=(data.terrain.noBuildZones||[]).map(item=>({...item}));}ui.pauseButton.textContent=state.paused?'▶':'Ⅱ';ui.pauseButton.classList.toggle('active',state.paused);updateUI();updatePreview();return true;
   }
   function restoreActiveRound(){
-    if(roundRestoreAttempted||document.body.classList.contains('playing'))return;roundRestoreAttempted=true;
-    const snapshot=saved.activeRound;if(!snapshot)return;
-    if(restoreSnapshot(snapshot,true)){checkpointActiveRound(false);announce('Level restored and paused');}
+    if(roundRestoreInProgress||document.body.classList.contains('playing'))return false;
+    const snapshot=saved.activeRound;if(!snapshot)return false;
+    roundRestoreInProgress=true;
+    const restored=restoreSnapshot(snapshot,true);
+    roundRestoreInProgress=false;
+    if(restored){checkpointActiveRound(false);announce('Level restored and paused');}
+    return restored;
   }
   function saveCurrentSlot(){if(activeSlot===null||!slotUnlocked(activeSlot)){activeSlot=Array.from({length:saved.slotCapacity||6},(_,i)=>i).find(i=>slotUnlocked(i)&&!saved.slots[i]);if(activeSlot===undefined)activeSlot=Array.from({length:saved.slotCapacity||6},(_,i)=>i).find(i=>slotUnlocked(i))??0;}const old=saved.slots[activeSlot],snapshot=roundSnapshot();snapshot.createdAt=old?.createdAt||old?.savedAt||Date.now();if(old?.slotName&&!old.autoName){snapshot.slotName=old.slotName;snapshot.autoName=false;}else snapshot.autoName=true;saved.slots[activeSlot]=snapshot;normalizeMapSaveOrder(snapshot.map);save();renderSaveSlots();}
   function openRenameSlot(index){renameSlotIndex=index;const data=saved.slots[index];if(!data)return;ui.saveRenameInput.value=slotDisplayName(data);ui.renameSaveModal.classList.remove('hidden');setTimeout(()=>ui.saveRenameInput.focus(),0);}
@@ -907,9 +911,17 @@
   ui.startGuardSecret.addEventListener('click',startGuardSecretClick);ui.closeProgressCheats.addEventListener('click',()=>{ui.progressCheatPanel.classList.add('hidden');logCheatUsage('home','panel_closed');});ui.progressCheatContent.addEventListener('click',handleProgressCheat);ui.progressCheatContent.addEventListener('change',handleProgressCheat);ui.progressCheatContent.addEventListener('click',handleMapAccessCheat);ui.progressCheatContent.addEventListener('change',handleMapAccessCheat);
   ui.playerName.addEventListener('input',()=>{saved.name=ui.playerName.value;save();});
   function pauseForBackground(){checkpointActiveRound(true);}
+  function restoreAfterBackground(){
+    if(document.hidden||document.body.classList.contains('playing'))return;
+    if(!ui.authScreen.classList.contains('hidden')||!ui.deviceScreen.classList.contains('hidden'))return;
+    restoreActiveRound();
+  }
   window.addEventListener('blur',pauseForBackground);
   window.addEventListener('pagehide',pauseForBackground);
-  document.addEventListener('visibilitychange',()=>{if(document.hidden)pauseForBackground();});
+  window.addEventListener('pageshow',restoreAfterBackground);
+  document.addEventListener('freeze',pauseForBackground);
+  document.addEventListener('resume',restoreAfterBackground);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)pauseForBackground();else restoreAfterBackground();});
   setInterval(()=>checkpointActiveRound(false),8000);
   ui.continueStoryButton.addEventListener('click',()=>closeStoryScene(false));ui.skipStoryButton.addEventListener('click',()=>closeStoryScene(true));ui.continueUnlockButton.addEventListener('click',closeMapUnlock);
   document.querySelector('.map-grid').addEventListener('contextmenu',event=>{const card=event.target.closest('.map-card[data-map]'),id=card?.dataset.map;if(!card||!builtInMapOrder.includes(id))return;event.preventDefault();if(!isOwner()){ui.progressText.textContent='You do not have permission to copy built-in levels. Only the verified owner can do that.';playSoundEffect('back');return;}ownerCopyBuiltInMap(id);});
