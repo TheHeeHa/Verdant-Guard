@@ -1,5 +1,5 @@
-const CACHE='verdant-guard-v56';
-const CORE=['./','./index.html','./styles.css?v=20260826-23','./expansion.css?v=20260826-23','./game.js?v=20260826-23','./expansion.js?v=20260826-23','./manifest.webmanifest','./icon-192.png','./icon-512.png','./apple-touch-icon.png','./gameplay.png'];
+const CACHE='verdant-guard-v57';
+const CORE=['./','./index.html','./styles.css?v=20260829-1','./expansion.css?v=20260829-1','./game.js?v=20260829-1','./expansion.js?v=20260829-1','./manifest.webmanifest','./icon-192.png','./icon-512.png','./apple-touch-icon.png','./gameplay.png'];
 const BACKGROUND_TAG='verdant-notifications';
 const DB_NAME='verdant-guard-background';
 const STORE_NAME='settings';
